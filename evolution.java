@@ -1,4 +1,5 @@
 public class evolution extends Main {
+    //int[][] grid;
 
     /* fills in a grid of determined size with random values either 0 or 1 representing live cells if 1 */
     private static int[][] creation(int arraySize){
@@ -53,9 +54,9 @@ public class evolution extends Main {
                 numNeighbours += 1;
             }
         }
-
         return numNeighbours;
     }
+
     /* main algorithm which calculates the new value of each cell depending on thei previous values */
     private static int[][] evolution(int[][] game, int[][] game2, int[][] neighs, int arraySize) {
         int numNeighbours;
@@ -73,7 +74,7 @@ public class evolution extends Main {
         //which meant the first calculation were correct but later ones were not
         for (i = 0; i < arraySize; i++) {
             for (j = 0; j < arraySize; j++) {
-                if (game[i][j] == 0 & neighs[i][j] == 0) {
+                if (game[i][j] == 0 && neighs[i][j] == 0) {
 
                 }
                 //Scenario changes
@@ -94,49 +95,19 @@ public class evolution extends Main {
                 }
             }
         }
-        return game;
+        return game2;
     }
+
     /* simple method which makes the evolution steps happen from one statement */
-    private static void step(int[][] grid, int[][] grid2, int[][] neighs, int arraySize){
+    public static int[][] step(int[][] grid, int[][] grid2, int[][] neighs, int arraySize){
         grid2 = evolution(grid, grid2, neighs, arraySize);
         grid = grid2;
-        printGrid(grid2, arraySize);
-    }
-    /* prints the grid to console */
-    private static void printGrid(int[][] game, int arraySize){
-        for (int i = 0; i  < arraySize; i++){
-            for (int j = 0; j < arraySize; j++){
-                System.out.print(game[i][j] + " ");
-            }
-            System.out.println();
-        }
-
-    }
-
-
-    public static void run(int arraySize) {
-        int[][] grid;
-        int[][] grid2 = new int[arraySize][arraySize];
-        int[][] neighs = new int[arraySize][arraySize];
-
-        grid = creation(arraySize);
-        printGrid(grid, arraySize);
-        System.out.println();
-        step(grid, grid2, neighs, arraySize);
-        System.out.println();
-
-        display.createDisplay();
-    }
-
-
-    /*public int getSize(){
-        return arraySize;
-    }
-    public void setSize(int i) {
-        arraySize = i;
-    }
-    public int[][] getGrid() {
         return grid;
-    }*/
+    }
 
+    public static void run(int arraySize, int[][] grid) {
+        grid = creation(arraySize);
+        step(grid, Main.grid2, Main.neighs, arraySize);
+        display.createDisplay(grid);
+    }
 }
