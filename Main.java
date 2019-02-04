@@ -1,12 +1,10 @@
-
 public class Main {
-
+    public static int arraySize = 60;
+    public static int[][] grid = new int[arraySize][arraySize];
+    public static int[][] grid2 = new int[arraySize][arraySize] ;
+    public static int[][] neighs = new int[arraySize][arraySize] ;
 
     public static void main(String[] args) {
-        int arraySize = 10;
-        evolution.run(arraySize);
-
-
-
+        evolution.run(arraySize, grid);
     }
 }
