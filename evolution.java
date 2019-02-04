@@ -58,10 +58,12 @@ public class evolution extends Main {
     }
 
     /* main algorithm which calculates the new value of each cell depending on thei previous values */
-    private static int[][] evolution(int[][] game, int[][] game2, int[][] neighs, int arraySize) {
+    private static int[][] evolution(int[][] game, int[][] neighs, int arraySize) {
         int numNeighbours;
         int i, j;
+        int[][] game2;
         game2 = game;
+
 
         for (i = 0; i < arraySize; i++) {
             for (j = 0; j < arraySize; j++) {
@@ -99,15 +101,16 @@ public class evolution extends Main {
     }
 
     /* simple method which makes the evolution steps happen from one statement */
-    public static int[][] step(int[][] grid, int[][] grid2, int[][] neighs, int arraySize){
-        grid2 = evolution(grid, grid2, neighs, arraySize);
+    public static int[][] step(int[][] grid, int[][] neighs, int arraySize){
+        int[][] grid2;
+        grid2 = evolution(grid, neighs, arraySize);
         grid = grid2;
         return grid;
     }
 
-    public static void run(int arraySize, int[][] grid) {
+    public static void run(int arraySize) {
         grid = creation(arraySize);
-        step(grid, Main.grid2, Main.neighs, arraySize);
+        step(grid, Main.neighs, arraySize);
         display.createDisplay(grid);
     }
 }
